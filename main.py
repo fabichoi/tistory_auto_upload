@@ -1,35 +1,39 @@
 import os
-import requests
 import time
+from datetime import datetime
 
-from datetime import datetime, timedelta
+import requests
+import csv
+
 from dotenv import load_dotenv
 
 
-def make_posts(titles, content, visibility, category, start_date, tag, init_params):
-    li = []
-    n = len(titles)
+def make_posts(init_params, extra_params):
+    posts = []
 
-    for i in range(n):
-        additional_params = {
-            'title': titles[i],
-            'content': content,
-            'visibility': visibility,
-            'category': category,
-            'published': time.mktime((start_date + timedelta(days=i)).timetuple()),
-            'tag': tag,
-        }
-        additional_params.update(init_params)
-        li.append(additional_params)
+    for params in extra_params:
+        params.update(init_params)
+        # 발행일 포맷 변환
+        published = time.mktime(datetime.strptime(params.get('published'), '%Y-%m-%d %H:%M:%S').timetuple())
+        params['published'] = published
+        posts.append(params)
 
-    return li
+    return posts
 
 
-if __name__ == '__main__':
+def get_csv_file(filename):
+    data = []
+    f = open(filename, 'r', encoding='utf-8')
+    csv_reader = csv.DictReader(f)
+    for line in csv_reader:
+        data.append(line)
+    f.close()
+
+    return data
+
+
+def get_init_params():
     load_dotenv(verbose=True)
-
-    s = '2021-09-04 23:30:00'
-    timestamp = time.mktime(datetime.strptime(s, '%Y-%m-%d %H:%M:%S').timetuple())
 
     access_token = os.getenv('ACCESS_TOKEN')
     output_type = os.getenv('OUTPUT_TYPE')
@@ -41,23 +45,13 @@ if __name__ == '__main__':
         'blogName': blog_name,
     }
 
-    titles = [
-        "예제 글 1",
-        "예제 글 2",
-        "예제 글 3",
-    ]
+    return init_params
 
-    content = ''
-    category = 1
-    visibility = 3
-    published = timestamp
-    tag = 'tag1,tag2,tag3'
 
-    start_date = datetime.strptime('2021-09-05 23:30:00', '%Y-%m-%d %H:%M:%S')
-    params_list = make_posts(titles, content, visibility, category, start_date, tag, init_params)
+if __name__ == '__main__':
+    init_params = get_init_params()
+    extra_params = get_csv_file('example.csv')
+    params_list = make_posts(init_params, extra_params)
 
     for params in params_list:
         requests.post('https://www.tistory.com/apis/post/write', params=params)
-
-    # r = requests.post('https://www.tistory.com/apis/post/write', params=params)
-    # print(r.json())
