@@ -10,6 +10,7 @@ import csv
 
 from dotenv import load_dotenv
 
+release_version = '2021.09.06'
 
 class PostAction(argparse.Action):
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
