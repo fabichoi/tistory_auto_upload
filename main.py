@@ -37,7 +37,7 @@ class PostAction(argparse.Action):
             params.update(init_params)
             # 발행일 포맷 변환
             dtime = datetime.strptime(params.get('published'), '%Y-%m-%d %H:%M:%S')
-            published = dtime - timedelta(hours=9).timestamp()
+            published = (dtime - timedelta(hours=9)).timestamp()
             params['published'] = published
             posts.append(params)
 
