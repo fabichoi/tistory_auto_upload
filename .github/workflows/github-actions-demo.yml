@@ -18,5 +18,4 @@ jobs:
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
       - name: execute script
         run: |
-          cd ${{ github.workspace }}
-          python main.py test.csv
+          ls ${{ github.workspace }}          
