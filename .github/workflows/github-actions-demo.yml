@@ -6,15 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: make dotenv file
-        run: |
-          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}"
-          echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}"
-          echo "RESPONSE_TYPE=${{ secrets.RESPONSE_TYPE }}"
-          echo "STATE=${{ secrets.STATE }}"
-          echo "GRANT_TYPE=${{ secrets.GRANT_TYPE }}"
-          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
-          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}"
-          echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
+        run: |          
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
       - name: check dotenv var
         run: |
