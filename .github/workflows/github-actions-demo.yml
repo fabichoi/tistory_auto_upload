@@ -7,7 +7,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: make dotenv file
+      - name: Configurate environment
+        run: |
+          pip install -r requirements.txt
+      - name: Make dotenv file
         run: |
           echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
           echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> .env
@@ -18,6 +21,6 @@ jobs:
           echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
           echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
-      - name: execute script
+      - name: Execute script
         run: |
           python main.py test.csv
