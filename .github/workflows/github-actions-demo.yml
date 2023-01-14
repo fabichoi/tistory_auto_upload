@@ -2,15 +2,20 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [ push ]
 jobs:
-  Explore-GitHub-Actions:
+  initial-settings:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-      - run: echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> .env
-      - run: echo "RESPONSE_TYPE=${{ secrets.RESPONSE_TYPE }}" >> .env
-      - run: echo "STATE=${{ secrets.STATE }}" >> .env
-      - run: echo "GRANT_TYPE=${{ secrets.GRANT_TYPE }}" >> .env
-      - run: echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
-      - run: echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
-      - run: echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
-      - run: echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
+      - name: make dotenv file
+        run: |
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}"
+          echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}"
+          echo "RESPONSE_TYPE=${{ secrets.RESPONSE_TYPE }}"
+          echo "STATE=${{ secrets.STATE }}"
+          echo "GRANT_TYPE=${{ secrets.GRANT_TYPE }}"
+          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
+          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}"
+          echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
+          echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
+      - name: check dotenv var
+        run: |
+          echo "cat .env"
