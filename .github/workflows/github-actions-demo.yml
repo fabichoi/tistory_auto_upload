@@ -6,8 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: make dotenv file
-        run: |          
+        run: |
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> .env
+          echo "RESPONSE_TYPE=${{ secrets.RESPONSE_TYPE }}" >> .env
+          echo "STATE=${{ secrets.STATE }}" >> .env
+          echo "GRANT_TYPE=${{ secrets.GRANT_TYPE }}" >> .env
+          echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
+          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
+          echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
       - name: check dotenv var
         run: |
-          echo "cat .env"
+          echo "ls -al ${{ github.workspace }}"
