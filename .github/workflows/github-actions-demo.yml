@@ -16,7 +16,6 @@ jobs:
           echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
           echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
-      - name: check dotenv var
+      - name: execute script
         run: |
-          ls ${{ github.workspace }}
-          cat .env
+          python main.py test.csv
