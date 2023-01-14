@@ -38,7 +38,7 @@ class PostAction(argparse.Action):
             params.update(init_params)
             # 발행일 포맷 변환
             dtime = datetime.strptime(params.get('published'), '%Y-%m-%d %H:%M:%S')
-            published = dtime.astimezone(timezone('Asia/Seoul'))
+            published = dtime.astimezone(timezone('Asia/Seoul')).timestamp()
             params['published'] = published
             posts.append(params)
 
