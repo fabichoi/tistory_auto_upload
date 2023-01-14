@@ -5,6 +5,8 @@ jobs:
   initial-settings:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
       - name: make dotenv file
         run: |
           echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
@@ -18,4 +20,4 @@ jobs:
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
       - name: execute script
         run: |
-          ls ${{ github.workspace }}          
+          python main.py test.csv
