@@ -18,4 +18,5 @@ jobs:
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
       - name: check dotenv var
         run: |
-          echo "ls ${{ github.workspace }}"
+          ls ${{ github.workspace }}
+          cat .env
