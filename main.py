@@ -1,5 +1,4 @@
 import os
-import time
 import argparse
 import json
 import logging
@@ -9,8 +8,10 @@ import requests
 import csv
 
 from dotenv import load_dotenv
+from pytz import timezone
 
 release_version = '2021.09.06'
+
 
 class PostAction(argparse.Action):
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
@@ -36,7 +37,8 @@ class PostAction(argparse.Action):
         for params in extra_params:
             params.update(init_params)
             # 발행일 포맷 변환
-            published = time.mktime(datetime.strptime(params.get('published'), '%Y-%m-%d %H:%M:%S').timetuple())
+            dtime = datetime.strptime(params.get('published'), '%Y-%m-%d %H:%M:%S')
+            published = dtime.astimezone(timezone('Asia/Seoul'))
             params['published'] = published
             posts.append(params)
 
