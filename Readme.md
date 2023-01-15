@@ -26,7 +26,8 @@ BLOG_NAME=티스토리 주소의 아이디 부분(https://xxx.tistory.com 에서
 ### [3] 업로드 관련 설정 파일 수정(혹은 작성)
 example.csv 파일을 수정한다. <br/>
 Microsoft Excel을 이용해도 되고 다른 editor를 사용해도 상관없다. </br>
-Microsoft Excel을 이용할 경우 저장할 때 반드시 example.csv와 동일한 format이어야 한다.
+Microsoft Excel을 이용할 경우 저장할 때 반드시 example.csv와 동일한 format이어야 한다. </br>
+Github Action을 사용하면서 csv의 사용법이 변경되었다.
 
 ### [4] 실행
 ```

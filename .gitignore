@@ -3,4 +3,3 @@ venv
 .idea/*
 .git
 *.csv
-!test.csv
