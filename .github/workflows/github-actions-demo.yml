@@ -1,8 +1,8 @@
 name: GitHub Actions For Tistory Auto Post App
 run-name: ${{ github.actor }} is applying automation using GitHub Actions 🚀
-on: [ push ]
-#  schedule:
-#    - cron: '0 0 * * *'
+on:
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
