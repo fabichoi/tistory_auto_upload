@@ -2,7 +2,7 @@ import os
 import argparse
 import json
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 import requests
 import csv
@@ -35,7 +35,7 @@ class PostAction(argparse.Action):
 
         for params in extra_params:
             params.update(init_params)
-            date_utc = datetime.now(timezone.utc) + timedelta(hours=9)
+            date_utc = datetime.now(timezone.utc)
             # 날짜 변환 적용
             params['title'] = params['title'].replace('${DATE}', date_utc.strftime('%Y.%m.%d'))
 
