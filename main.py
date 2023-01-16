@@ -2,7 +2,7 @@ import os
 import argparse
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import requests
 import csv
@@ -35,14 +35,14 @@ class PostAction(argparse.Action):
 
         for params in extra_params:
             params.update(init_params)
-            date_utc = datetime.now(timezone.utc)
+            date_utc = datetime.now(timezone.utc) + timedelta(hours=9)
             # 날짜 변환 적용
             params['title'] = params['title'].replace('${DATE}', date_utc.strftime('%Y.%m.%d'))
 
             # 발행일 포맷 변환
             pub_date = datetime.strptime(params.get('published'), '%H:%M:%S')
-            published = pub_date.replace(year=date_utc.year, month=date_utc.month, day=date_utc.day).timestamp()
-            params['published'] = published
+            pub_date = pub_date.replace(year=date_utc.year, month=date_utc.month, day=date_utc.day) - timedelta(hours=9)
+            params['published'] = pub_date.timestamp()
             posts.append(params)
 
         return posts
