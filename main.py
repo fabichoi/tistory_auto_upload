@@ -56,7 +56,7 @@ class PostAction(argparse.Action):
                     data.append(line)
         except Exception as e:
             logging.error('No such file or directory ' + filename)
-
+        logging.info('csv file info: ' % data)
         return data
 
     def get_init_params(self):
