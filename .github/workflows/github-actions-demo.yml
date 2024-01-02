@@ -23,6 +23,10 @@ jobs:
           echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
           echo "OUTPUT_TYPE=${{ secrets.OUTPUT_TYPE }}" >> .env
           echo "BLOG_NAME=${{ secrets.BLOG_NAME }}" >> .env
+          echo "G_CLIENT_ID=${{ secrets.G_CLIENT_ID }}" >> .env
+          echo "G_CLIENT_SECRET=${{ secrets.G_CLIENT_SECRET }}" >> .env
+          echo "G_REFRESH_TOKEN=${{ secrets.G_REFRESH_TOKEN }}" >> .env
+          echo "G_BLOG_ID=${{ secrets.G_BLOG_ID }}" >> .env
       - name: Execute script
-        run: |
-          python main.py example.csv
+        run: |          
+          python main.py example_blogspot.csv 

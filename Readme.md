@@ -1,4 +1,4 @@
-# 티스토리 자동 글 생성기
+# ~~티스토리~~ 블로그스팟(블로거) 자동 글 생성기
 
 ## 사용법
 
@@ -41,3 +41,8 @@ https://fabichoi.tistory.com/337 - 1일차 <br/>
 https://fabichoi.tistory.com/341 - 2일차 <br/>
 https://fabichoi.tistory.com/353 - 3일차 <br/>
 https://fabichoi.tistory.com/363 - 4일차 <br/>
+
+### 최근 변경 사항
+티스토리가 제공하던 OpenAPI 서비스를 종료함에 따라
+공부 습관을 유지하기 위해 블로그스팟(구글 블로거)으로 이동하기로 결정함.
+이에 따라 자동 글 생성기의 소스도 수정 반영.
